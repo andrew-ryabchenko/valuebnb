@@ -10,6 +10,8 @@ ipykernel = "*"
 matplotlib = "*"
 sklearn = "*"
 category-encoders = "*"
+flask = "*"
+psycopg2 = "*"
 
 [dev-packages]
 

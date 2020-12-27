@@ -1,3 +1,5 @@
+import { loginRequest, registerRequest } from "./auth_requests.js";
+
 const inputEmail = document.getElementById('uname');
 const inputPassword = document.getElementById('password');
 const loginButton = document.getElementById('login');
@@ -10,11 +12,11 @@ loginButton.addEventListener('click', function (){
     if (!checkEmail(email)){
         alert('Invalid email')
         return null
-    } else {logRegRequest('/login', email, passwd)}
-    if (!checkPassword(passwd)){
+    } 
+    else if (!checkPassword(passwd)){
         alert('Password must be longer than 6 characters')
         return null
-    }
+    } else {loginRequest(email, passwd)}
 
 });
 
@@ -25,40 +27,13 @@ registerButton.addEventListener('click', function (){
         alert('Invalid email')
         return null
     }
-    if (!checkPassword(passwd)){
+    else if (!checkPassword(passwd)){
         alert('Password must be longer than 6 characters')
         return null
-    }
+    } else {registerRequest(email, passwd)}
     
 
 });
-
-// ASYNC REQUEST WITH CREDENTIALS FOR DATABASE VERIFICATION
-
-function logRegRequest(route, userEmail, password){
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", route, true);
-    xhr.responseType='document';
-    xhr.setRequestHeader('user_email', userEmail);
-    xhr.setRequestHeader('password', password);
-    xhr.onload = function (e) {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                var uemail = xhr.getResponseHeader('user_email');
-                
-                
-                
-            } else {
-            
-            }
-        }
-    }
-
-    xhr.onerror = function (e) {
-    console.error(xhr.statusText);
-    };
-    xhr.send(null);
-};
 
 // REGEX EMAIL CHECK
 function checkEmail(email){

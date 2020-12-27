@@ -15,16 +15,14 @@ def exists(uname, passwd):
     return result
 
 # Adds new user to the database
+# Returns status code. 100 - Created, 101 - User already exists
 def create_user(uname, passwd):
     if (not exists(uname, passwd)):
         query = f"""INSERT INTO users(uname, password)
                     VALUES ('{uname}', '{passwd}')"""
-        try: 
-            cursor.execute(query)
-            conn.commit()
-            return 'created'
-        except psycopg2.errors.UniqueViolation as err: 
-            conn.commit()
-            return f'Username {uname} already exists'
+        cursor.execute(query)
+        conn.commit()
+        return 100
+        
     else:
-        return f'User {uname} already exists'        
+        return 101        

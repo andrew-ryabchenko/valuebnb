@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ValueBnB</title>
 </head>
 <body>
-    <form action='/login' method="POST">
-        <label for="uname">Username:</label><br>
-        <input type="text" id="uname" name="uname" maxlength="40"><br>
-        <label for="pass">Password:</label><br>
-        <input type="password" id="pass" name="pass" maxlength="15"><br>
-        <button type="submit">Login</button> 
-        <button type="submit" formaction="/new_user">Register</button> 
-    </form>
-    {% if message %}
-        <p>{{message}}</p>
-    {% endif %}    
+        <label for="uname" class="InputLabels">Email:</label><br>
+        <input type="text" id="uname" name="uname" maxlength="40" class="InputFields"><br>
+        <label for="pass" class="InputLabels">Password:</label><br>
+        <input type="password" id="password" name="pass" maxlength="15" class="InputFields"><br>
+        <button class="Button" id="login">Login</button> 
+        <button class="Button" id="register">Register</button> 
+        
+    <script src="static/auth.js"></script>
+    <script src="static/requests.js"></script>
 </body>
 </html>

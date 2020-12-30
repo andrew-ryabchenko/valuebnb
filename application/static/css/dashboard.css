@@ -1,3 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .material-icons{
     cursor: pointer;
+}
+#dataInputContainer{
+    width: 20%;
+    display:flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: start;
+
 }

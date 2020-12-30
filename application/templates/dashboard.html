@@ -13,6 +13,43 @@
     <h3>{{data}}</h3>
     {% endif %}
     <span class="material-icons" id="logOut">power_settings_new</span>
+    <div id='dataInputContainer'>
+      
+      <label for="streetName" class="InputLabels">Street</label>
+      <input id='streetName' type='text' class="InputFields"><br>
+
+      <label for="streetNumber" class="InputLabels">Street Number</label>
+      <input id='streetNumber' type='number' class="InputFields"><br>
+
+      <label for="zip" class="InputLabels">Zip Code</label>
+      <input id='zip' type='number' class="InputFields"><br>
+
+      <label for="property_type" class="InputLabels">Property Type</label>
+      <select id="property_type" class="InputFields">
+        {% for p in property_types%}
+        <option value="{{p}}">{{p}}</option>
+        {% endfor %}
+      </select><br>
+
+      <label for="accomodates" class="InputLabels">Accomodates People</label>
+      <input id='accomodates' type='number' class="InputFields"><br>
+
+      <label for="bathrooms" class="InputLabels">Bathrooms</label>
+      <select id="bathrooms" class="InputFields"><br>
+        {% for b in bathroom_types %}
+          <option value="{{b}}">{{b}}</option>
+        {% endfor %}
+      </select><br>
+
+      <label for="bedrooms" class="InputLabels">Bedrooms</label>
+      <input id="bedrooms" type="number" class="InputFields"><br>
+
+      <label for="beds" class="InputLabels">Beds</label>
+      <input id="beds" type="number" class="InputFields"><br>
+
+      <button id='estimateButton' class="InputFields">Estimate</button>
+    </div>
+
     <script src="static/main.js" type="module"></script>
 </body>
 </html>

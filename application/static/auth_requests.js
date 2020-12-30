@@ -11,10 +11,13 @@ function loginRequest(userEmail, password){
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 if (xhr.getResponseHeader('user_status')=='found'){
-                    var uemail = xhr.getResponseHeader('user_email');
-                    document.cookie = `user_email = ${uemail}; expires = Thu, 01 Jan 2060 00:00:00 UTC; path = /;`
+                    var uemail = xhr.getResponseHeader('email_hash');
+                    document.cookie = `email = ${userEmail}; expires = Thu, 01 Jan 2060 00:00:00 UTC; path = /;`
+                    document.cookie = `email_hash = ${uemail}; expires = Thu, 01 Jan 2060 00:00:00 UTC; path = /;`
                     window.location.replace("/dashboard");}
-                else{alert('User not found. Check login credentials.');}
+                else if(xhr.getResponseHeader('user_status')=='not_found'){
+                    alert('User not found. Check login credentials.');}
+                else{alert(`Database error`);}
             } 
         }
     }
@@ -38,10 +41,13 @@ function registerRequest(userEmail, password){
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 if (xhr.getResponseHeader('user_status')=='registered'){
-                    var uemail = xhr.getResponseHeader('user_email');
-                    document.cookie = `user_email = ${uemail}; expires = Thu, 01 Jan 2060 00:00:00 UTC; path = /;`
+                    var uemail = xhr.getResponseHeader('email_hash');
+                    document.cookie = `email = ${userEmail}; expires = Thu, 01 Jan 2060 00:00:00 UTC; path = /;`
+                    document.cookie = `email_hash = ${uemail}; expires = Thu, 01 Jan 2060 00:00:00 UTC; path = /;`
                     window.location.replace("/dashboard");}
-                else{alert(`User ${userEmail} already exists`);}
+                else if (xhr.getResponseHeader('user_status')=='already_exists'){
+                    alert(`User ${userEmail} already exists`)}
+                else{alert(`Database error`)}
             } 
         }
     }
